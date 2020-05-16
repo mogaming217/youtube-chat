@@ -1,0 +1,46 @@
+users:
+  name: String
+  iconURL: String?
+
+  friendUsers: # 検索したくなったら、Algolia（全文検索）
+    documentID: friendUserID
+    name: String?
+    createdAt: Timestamp
+
+  attendingRooms:
+    documentID: directRoomID or groupRoomID
+    roomRef: DocumentReference
+    unreadMessageCount: Int
+    latestReadMessageID: String?
+    updatedAt: Timestamp
+
+directRooms:
+  documentID: random
+  name: String
+  userIDs: [String] # 参加しているユーザー2名のID
+  updatedAt: Timestamp
+
+  messages: # onCreate -> userIDsのそれぞれのattendingRoomsを更新する（updatedAt, unreadMessageCount）
+    documentID: random
+    type: String # plain,
+    body: String
+    createdAt: Timestamp
+
+groupRooms:
+  documentID: random
+  name: String
+  iconURL: String
+  groupUserCount: Int
+  updatedAt: Timestamp
+
+  messages: # onCreate -> userIDsのそれぞれのattendingRoomsを更新する（updatedAt, unreadMessageCount）
+    documentID: random
+    body: String
+    type: String # plain,
+    detail: Object
+      imageURLs: [String]
+    createdAt: Timestamp
+
+  groupUsers:
+    documentID: userID
+    joinedAt: Timestamp

@@ -23,6 +23,7 @@ directRooms:
   messages: # onCreate -> userIDsのそれぞれのattendingRoomsを更新する（updatedAt, unreadMessageCount）
     documentID: random
     type: String # plain,
+    fromUserID: String
     body: String
     createdAt: Timestamp
 
@@ -35,6 +36,7 @@ groupRooms:
 
   messages: # onCreate -> userIDsのそれぞれのattendingRoomsを更新する（updatedAt, unreadMessageCount）
     documentID: random
+    fromUserID: String
     body: String
     type: String # plain,
     detail: Object
